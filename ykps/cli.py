@@ -1,6 +1,7 @@
 import argparse
 
 from .info import clear_info_cache
+from .actions import auth
 
 
 def main():
@@ -9,7 +10,8 @@ def main():
     )
 
     avail = {
-        'clear_cache': clear_info_cache
+        'clear_cache': clear_info_cache,
+        'auth': auth
     }
 
     parser.add_argument('action', choices=avail, help='the action to perform')

@@ -11,7 +11,7 @@ def gen_key(length: int = 12):
     return ''.join(random.choice(source) for _ in range(length))
 
 
-def load_login_info(path: str = ''):
+def load_login_info(path: str = '') -> (str, str):
     if not path:
         path = os.path.expanduser('.ykps_info')
 
@@ -31,9 +31,8 @@ def load_login_info(path: str = ''):
 
     user = input('Student ID: ')
     pwd = getpass.getpass()
-    key = gen_key()
 
-    encrypted = arc4.ARC4(key).encrypt(pwd).hex()
+    encrypted, key = encrypt(pwd)
 
     with open(path, 'w+') as f:
         f.write('\n'.join([user, encrypted, key]))
@@ -50,3 +49,8 @@ def clear_info_cache(path: str = ''):
         print('User info file removed.')
     else:
         print('There is no user info file.')
+
+
+def encrypt(pwd: str) -> (str, str):
+    key = gen_key()
+    return (arc4.ARC4(key).encrypt(pwd).hex(), key)
