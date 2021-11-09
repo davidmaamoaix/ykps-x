@@ -7,7 +7,7 @@ README = (PATH / 'README.md').read_text()
 
 setup(
     name='ykps-x',
-    version='0.1.0',
+    version='0.1.2',
     description='The stupid YKPS portal, now in your CLI.',
     long_description=README,
     long_description_content_type='text/markdown',
