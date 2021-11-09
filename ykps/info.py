@@ -13,7 +13,7 @@ def gen_key(length: int = 12):
 
 def load_login_info(path: str = '') -> (str, str):
     if not path:
-        path = os.path.expanduser('.ykps_info')
+        path = '/.ykps_info'
 
     if os.path.isfile(path):
         with open(path, 'r') as f:
